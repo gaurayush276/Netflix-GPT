@@ -5,7 +5,7 @@ import { auth } from '../utils/firebase';
 import { signOut } from 'firebase/auth';
 import { API_OPTIONS } from '../utils/constants';
 import { useDispatch  } from 'react-redux';
-import { addNowPlayingMovies } from '../utils/moviesSlice';
+import { addNowPlayingMovies, addPopularMovies ,upcomingMovies} from '../utils/moviesSlice';
 import MainContainer from './MainContainer';
 import SecondaryContainer from './SecondaryContainer';
 function Browse() {
@@ -27,13 +27,29 @@ function Browse() {
   // this section is fethcing the data add putting it in the store 
 
 useEffect(()=> {
+  // dispatching the now playing movies 
   fetch('https://api.themoviedb.org/3/movie/now_playing?page=1', API_OPTIONS)
   .then(response => response.json())
   .then(response => { 
     console.log(response.results) ; 
-   dispatch (addNowPlayingMovies(response.results)) 
+   dispatch (addNowPlayingMovies(response.results))  ;
+
+  // dispatching the  popular movies 
+  fetch('https://api.themoviedb.org/3/movie/top_rated?page=1', API_OPTIONS)
+.then(response => response.json())
+.then(response =>{ 
+  console.log('Trending movies')
+  console.log(response.results) ; 
+  dispatch (addPopularMovies(response.results))  ; })
+.catch(err => console.error(err));
 } )
+
+// dispatching the upcoming movies 
+fetch('https://api.themoviedb.org/3/movie/upcoming?page=1', API_OPTIONS)
+  .then(response => response.json())
+  .then(response =>  dispatch (upcomingMovies(response.results))  )
   .catch(err => console.error(err));
+  
 
  
 },[])

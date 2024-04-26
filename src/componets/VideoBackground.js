@@ -7,17 +7,17 @@ const VideoBackground = ({ movieId }) => {
   const [trailerId ,sertrailerId ] = useState (null ) ; 
 
   const getMovieVideos = async () => {
-    const data = await fetch("https://api.themoviedb.org/3/movie/823464/videos?language=en-US",API_OPTIONS
+    const data = await fetch("https://api.themoviedb.org/3/movie/1041613/videos?language=en-US",API_OPTIONS
     );
     const json = await data.json();
     console.log("here is the api call for movie videos ");
     console.log(json);
 
-    const filterData = json.results.filter((video) => video.type === 'Trailer'); 
+    const filterData = json?.results?.filter((video) => video.type === 'Trailer'); 
     console.log(filterData) ; 
-    const trailer = filterData.lenght ? filterData[1] : json.results[0] ; 
+    const trailer = filterData.lenght ? filterData[1] : json?.results[0] ; 
     console.log(trailer);
-    sertrailerId(trailer.key) ; 
+    sertrailerId(trailer?.key) ; 
   };
   useEffect(() => {
     getMovieVideos();
@@ -26,7 +26,7 @@ const VideoBackground = ({ movieId }) => {
   return (
     <div className=" w-full  ">
       <iframe
-      className=" w-full aspect-video"
+      className=" w-full   aspect-video"
         src={"https://www.youtube.com/embed/"+ trailerId +"?&autoplay=1&mute=1"  }
         title="YouTube video player"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

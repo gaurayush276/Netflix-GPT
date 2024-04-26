@@ -10,12 +10,12 @@ const MainContainer = () => {
     // if there is no movies or the page is not loded yet so to avoid the error 
     if( !movies )
     return ; 
-const mainMovie = movies[1] ; 
+const mainMovie = movies[5] ; 
  console.log(mainMovie) ; 
  const {original_title , overview ,id } =  mainMovie ; 
 
   return (
-    <div>
+    <div className=' '>
       <VideoTitle title = {original_title } overview = {overview} />
       <VideoBackground movieId = {id}/>
     </div>
