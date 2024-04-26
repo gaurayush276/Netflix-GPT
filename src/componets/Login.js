@@ -3,15 +3,14 @@ import Header from "./Header";
 import { useState ,useRef} from "react";
 import { checkValidData } from "../utils/validation";
 import { auth } from "../utils/firebase";
-import { createUserWithEmailAndPassword  , signInWithEmailAndPassword} from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { createUserWithEmailAndPassword  , signInWithEmailAndPassword} from "firebase/auth"; 
 
 // toggle means if the form is a sign up form or sign up form 
 
 
 function Login() {
 
-  const navigate = useNavigate() ;
+  
   let [toggle, settoggle] = useState(true);
 
   let [checkError, setcheckError] = useState(null);
@@ -42,7 +41,7 @@ function Login() {
         
           const user = userCredential.user;
           console.log(user) ;
-          navigate("/browse") ; 
+ 
         })
         .catch((error) => {
           console.error("Firebase authentication error:", error);
@@ -62,7 +61,7 @@ function Login() {
           const user = userCredential.user;
           console.log("for sign in") ; 
           console.log(user) ;
-          navigate("/browse") ; 
+          
           // ...
         })
         .catch((error) => {
@@ -115,12 +114,12 @@ function Login() {
 
         <button
           onClick={handleButton}
-          className="  bg-red-800 text-white p-2 m-2 w-full rounded-md border-none  "
+          className="  bg-red-700 text-white p-2 m-2 w-full rounded-md border-none  "
         >
           {toggle ? "Sign In" : "Sign Up"}
         </button>
 
-        <p className="text-red-500 font-semibold pl-5">{checkError}</p>
+        <p className="text-red-6800 font-semibold pl-5">{checkError}</p>
 
         <p className="m-4 p-2 cursor-pointer" onClick={toggleForm}>
           {" "}
