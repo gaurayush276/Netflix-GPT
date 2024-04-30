@@ -7,10 +7,11 @@ const MainContainer = () => {
     const movies = useSelector(store =>store.movies?.nowPlayingMovies) ; 
 
     // for the main movie that will shown up in the main page 
-    // if there is no movies or the page is not loded yet so to avoid the error 
+    // if there is no movies or the page is not loded yet then to avoid the error 
     if( !movies )
     return ; 
 const mainMovie = movies[5] ; 
+console.log("main  movie") ; 
  console.log(mainMovie) ; 
  const {original_title , overview ,id } =  mainMovie ; 
 

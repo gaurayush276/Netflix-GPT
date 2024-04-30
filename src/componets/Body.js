@@ -2,6 +2,7 @@ import React from 'react';
 import Browse from './Browse';
 import Login from './Login';
 import { createBrowserRouter ,RouterProvider } from 'react-router-dom';
+import GptSearch from './GptSearch';
 
 
 
@@ -18,6 +19,10 @@ function Body() {
         ,{
             path:'/browse' ,
             element: <Browse/>
+        }
+        ,{
+          path:'/GPTSearch',
+          element: <GptSearch/>
         }
     ]) ;
 
